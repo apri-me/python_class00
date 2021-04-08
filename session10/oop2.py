@@ -2,7 +2,7 @@ class Employee:
     raise_factor = 1.06
     num_of_emps = 0
     list_of_emps = []
-    def __init__(self, fname, lname, pay):
+    def __init__(self, fname, lname, pay=10000):
         self.fname = fname
         self.lname = lname
         self.pay = pay
@@ -20,15 +20,23 @@ class Employee:
     def set_raise_factor(cls, new_factor):
         cls.raise_factor = new_factor
 
-if __name__ == '__main__':
-    # print(Employee.num_of_emps)
-    emp_1 = Employee("alireza", "afroozi", 5000)
-    # print(Employee.num_of_emps)
-    # emp_2 = Employee('cristiano', 'ronaldo', 100000)
-    # print(Employee.num_of_emps)
-    Employee.set_raise_factor(1.1)
-    # emp_1.set_raise_factor(1.08)
-    print(emp_1.raise_factor)
+    @classmethod
+    def init_by_fullname(cls, name):
+        firstname = name.split()[0]
+        lastname = name.split()[1]
+        return cls(firstname, lastname)
+
+    @staticmethod
+    def congratulate():
+        print("Eydetun Mobarak")
 
 
-    # print(Employee.list_of_emps[1].fullname())
+emp1 = Employee("alireza", "afroozi")
+
+emp2 = Employee.init_by_fullname("Mohsen Rahimbakhsh")
+
+print(emp2.fname)
+print(emp2.lname)
+print(emp2.pay)
+
+# print(emp1.pay)
